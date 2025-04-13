@@ -1,0 +1,1343 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marmaraspor Menü</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to right, #FFC107, #FF5722);
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .header {
+            background-color: #000;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #FFC107;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 106px;
+            height: 105px;
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+
+        .site-title {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FFC107;
+        }
+
+        .site-subtitle {
+            font-size: 16px;
+            color: #928c8c;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            align-items: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .nav-links a {
+            color: #FFC107;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            color: #FF5722;
+        }
+
+        /* Açılır Menü Stilleri */
+        .dropdown {
+            position: relative;
+            display: inline-block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .dropdown-toggle {
+            color: #FFC107;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .dropdown-toggle:hover {
+            color: #FF5722;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #1a1a1a;
+            border: 2px solid #FFC107;
+            border-radius: 5px;
+            padding: 10px;
+            min-width: 150px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 1000;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .dropdown-menu a {
+            display: block;
+            color: #FFC107;
+            padding: 8px 10px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: normal;
+            text-align: center;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #FF5722;
+            color: #000;
+            border-radius: 3px;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .social-links a {
+            color: #FFC107;
+            text-decoration: none;
+            font-size: 16px;
+        }
+
+        .social-links a:hover {
+            color: #FF5722;
+        }
+
+        .language-options {
+            display: flex;
+            gap: 10px;
+        }
+
+        .language-options a {
+            color: #FFC107;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .language-options a:hover {
+            color: #FF5722;
+        }
+
+        /* Banner (Slider) Stilleri */
+        .banner {
+            background-color: #1a1a1a;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            height: 400px;
+            overflow: hidden;
+        }
+
+        .slider {
+            width: 100%;
+            height: 100%;
+        }
+
+        .slides {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .slide {
+            min-width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .slide-image {
+            width: 32%;
+            height: 100%;
+            object-fit: cover;
+            cursor: pointer;
+        }
+
+        .banner-arrow {
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 0 20px;
+            z-index: 10;
+        }
+
+        .banner-arrow:hover {
+            color: #FFC107;
+        }
+
+        .left-arrow {
+            position: absolute;
+            left: 10px;
+        }
+
+        .right-arrow {
+            position: absolute;
+            right: 10px;
+        }
+
+        /* Son Dakika Haberler Bölümü Stilleri */
+        .breaking-news-section {
+            padding: 40px 20px;
+            background-color: transparent;
+        }
+
+        .breaking-news-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 2px solid #FFC107;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .breaking-news-title {
+            text-align: center;
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #FFC107;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .breaking-news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .breaking-news-card {
+            background-color: #1a1a1a;
+            border: 2px solid #FFC107;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            animation: bounce 1.5s infinite;
+        }
+
+        .breaking-news-card:hover {
+            transform: translateY(-5px);
+            animation-play-state: paused;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .breaking-news-image {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-right: 15px;
+        }
+
+        .breaking-news-content {
+            flex: 1;
+        }
+
+        .breaking-news-label {
+            display: inline-block;
+            background-color: #e63946;
+            color: #fff;
+            font-size: 12px;
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+        }
+
+        .breaking-news-headline {
+            font-size: 20px;
+            color: #FF5722;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .breaking-news-summary {
+            font-size: 14px;
+            color: #FFC107;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .breaking-news-button {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: #FFC107;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .breaking-news-button:hover {
+            background-color: #FF5722;
+        }
+
+        /* Oyuncular Bölümü Stilleri */
+        .players-section {
+            padding: 40px 20px;
+            background-color: transparent;
+        }
+
+        .players-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 2px solid #FFC107;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .players-title {
+            text-align: center;
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #FFC107;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .players-grid {
+            display: flex;
+            justify-content: center;
+        }
+
+        .player-card {
+            background-color: #1a1a1a;
+            border: 2px solid #FFC107;
+            border-radius: 10px;
+            display: flex;
+            padding: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease;
+            width: 100%;
+            max-width: 600px;
+            align-items: stretch;
+        }
+
+        .player-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .player-image-container {
+            flex: 0 0 40%;
+            background-color: #003087;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .player-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .player-info {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .player-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .player-name {
+            font-size: 24px;
+            color: #FF5722;
+            font-weight: bold;
+        }
+
+        .player-number {
+            font-size: 20px;
+            color: #FFC107;
+            font-weight: bold;
+        }
+
+        .player-details {
+            margin-bottom: 15px;
+        }
+
+        .player-details p {
+            font-size: 14px;
+            color: #FFC107;
+            margin: 5px 0;
+        }
+
+        .player-details p strong {
+            color: #fff;
+        }
+
+        .flag-icon {
+            width: 20px;
+            height: 15px;
+            vertical-align: middle;
+            margin-left: 5px;
+        }
+
+        .player-stats h4 {
+            font-size: 18px;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            text-align: center;
+        }
+
+        .stat-item {
+            background-color: #2a2a2a;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .stat-item span:first-child {
+            display: block;
+            font-size: 12px;
+            color: #FFC107;
+            margin-bottom: 5px;
+        }
+
+        .stat-item span:last-child {
+            font-size: 16px;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .details-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #FFC107;
+            color: #000;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .details-button:hover {
+            background-color: #FF5722;
+        }
+
+        /* Oyuncu Seçim Menüsü Stilleri */
+        .player-selector {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .selector-label {
+            font-size: 16px;
+            color: #FFC107;
+            margin-right: 10px;
+        }
+
+        #player-select {
+            padding: 8px 15px;
+            font-size: 14px;
+            color: #000;
+            background-color: #FFC107;
+            border: 2px solid #FF5722;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Montserrat', sans-serif;
+        }
+
+        #player-select:hover {
+            background-color: #FF5722;
+            color: #fff;
+        }
+
+        /* Sponsorluk Bölümü Stilleri */
+        .sponsors-section {
+            padding: 40px 20px;
+            background-color: transparent;
+        }
+
+        .sponsors-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background-color: rgba(51, 51, 51, 0.9);
+            border: 2px solid #FFC107;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .sponsors-title {
+            text-align: center;
+            font-size: 36px;
+            color: #fff;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            border-bottom: 3px solid #FFC107;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .sponsors-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            justify-items: center;
+        }
+
+        .sponsor-item {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .sponsor-logo {
+            width: 150px;
+            height: 75px;
+            object-fit: contain;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .sponsor-logo:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 10px #FFC107;
+        }
+
+        /* Modal Stilleri */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background-color: #1a1a1a;
+            border: 2px solid #FFC107;
+            border-radius: 10px;
+            max-width: 90%;
+            max-height: 90%;
+            padding: 20px;
+            position: relative;
+            text-align: center;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            color: #FFC107;
+            cursor: pointer;
+        }
+
+        .close-button:hover {
+            color: #FF5722;
+        }
+
+        .modal-image {
+            display: block;
+            border-radius: 5px;
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+        }
+
+        .modal-arrow {
+            color: #fff;
+            font-size: 40px;
+            cursor: pointer;
+            padding: 0 20px;
+            z-index: 10;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .modal-arrow:hover {
+            color: #FFC107;
+        }
+
+        .left-modal-arrow {
+            left: 10px;
+        }
+
+        .right-modal-arrow {
+            right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Menü Bölümü -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="Resim/Marmarasporlogo.png" alt="Marmaraspor Logo" class="logo">
+            <div>
+                <div class="site-title">MARMARASPOR</div>
+                <div class="site-subtitle">RESMİ İNTERNET PLATFORMU</div>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="index.html">ANA SAYFA</a>
+            <!-- Kulüp için açılır menü -->
+            <div class="dropdown">
+                <span class="dropdown-toggle">KULÜP</span>
+                <div class="dropdown-menu">
+                    <a href="kulup/haber/index.html">Kulüp Haberleri</a>
+                    <a href="kulup/kadro/index.html">Kadro</a>
+                    <a href="kulup/Müze/index.html">Müze</a>
+                </div>
+            </div>
+            <a href="Forma Satın Al/index.html">MARMARA STORE</a>
+            <a href="iletişim/index.html">İLETİŞİM</a>
+        </div>
+
+        <div class="social-links">
+            <a href="#"></a>
+            <a href="#"></a>
+            <div class="language-options">
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Banner Bölümü (Slider) -->
+    <div class="banner">
+        <div class="banner-arrow left-arrow">←</div>
+        <div class="slider">
+            <div class="slides">
+                <!-- Resim 1 -->
+                <div class="slide">
+                    <img src="Resim/Ambatukam5.png" alt="Marmaraspor Slide 1" class="slide-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Resim 2 -->
+                <div class="slide">
+                    <img src="Resim/ARTİSHKİNGREKLAM.png" alt="" class="slide-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Resim 3 -->
+                <div class="slide">
+                    <img src="Resim/AMBATUKAM3-.png" alt="" class="slide-image" onclick="openModal(this.src)">
+                </div>
+                <!-- Resim 4 -->
+                <div class="slide">
+                    <img src="Resim/miraç.png" alt="" class="slide-image" onclick="openModal(this.src)">
+                </div>
+            </div>
+        </div>
+        <div class="banner-arrow right-arrow">→</div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal" id="imageModal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">×</span>
+            <div class="modal-arrow left-modal-arrow" onclick="prevModalImage()">←</div>
+            <img src="" alt="Modal Image" class="modal-image" id="modalImage">
+            <div class="modal-arrow right-modal-arrow" onclick="nextModalImage()">→</div>
+        </div>
+    </div>
+
+    <!-- Son Dakika Haberler Bölümü -->
+    <div class="breaking-news-section">
+        <div class="breaking-news-container">
+            <h2 class="breaking-news-title">SON DAKİKA HABERLER</h2>
+            <div class="breaking-news-grid">
+                <!-- Son Dakika 1 -->
+                <div class="breaking-news-card">
+                    <img src="https://cdn.ntvspor.net/671e2c5ec0d94ff3bf6a5cbf44accb35.jpg?mode=crop&w=940&h=626" alt="Son Dakika 1" class="breaking-news-image">
+                    <div class="breaking-news-content">
+                        <div class="breaking-news-label">SON DAKİKA</div>
+                        <h3 class="breaking-news-headline">JORGE JESUS HOŞGELDIN!</h3>
+                        <p class="breaking-news-summary"></p>
+                        <a href="kulup/haber/index.html" class="breaking-news-button">Habere git</a>
+                    </div>
+                </div>
+                <!-- Son Dakika 2 -->
+                <div class="breaking-news-card">
+                    <img src="kulup/haber/Resim/Baskan.jpg" alt="Son Dakika 2" class="breaking-news-image">
+                    <div class="breaking-news-content">
+                        <div class="breaking-news-label">SON DAKİKA</div>
+                        <h3 class="breaking-news-headline">Başkan Fikri Belalı Jorge Jesus için bir açıklama yaptı!</h3>
+                        <p class="breaking-news-summary"></p>
+                        <a href="kulup/haber/index.html" class="breaking-news-button">Habere git</a>
+                    </div>
+                </div>
+                <!-- Son Dakika 3 -->
+                <div class="breaking-news-card">
+                    <img src="kulup/haber/Resim/jesus-turkic-haber.png" alt="Son Dakika 3" class="breaking-news-image">
+                    <div class="breaking-news-content">
+                        <div class="breaking-news-label">SON DAKİKA</div>
+                        <h3 class="breaking-news-headline">JESUS: "Niyeti iyi fakat korkutucu"</h3>
+                        <p class="breaking-news-summary"></p>
+                        <a href="kulup/haber/index.html" class="breaking-news-button">Habere git</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Oyuncular Bölümü -->
+    <div class="players-section">
+        <div class="players-container">
+            <h2 class="players-title">OYUNCULAR</h2>
+            <div class="players-grid">
+                <!-- Tek Oyuncu Kartı -->
+                <div class="player-card" id="player-card">
+                    <div class="player-image-container">
+                        <img src="" alt="Oyuncu" class="player-image" id="player-image">
+                    </div>
+                    <div class="player-info">
+                        <div class="player-header">
+                            <h3 class="player-name" id="player-name"></h3>
+                            <span class="player-number" id="player-number"></span>
+                        </div>
+                        <div class="player-details">
+                            <p><strong>Doğum Tarihi (Yaş):</strong> <span id="player-birth"></span></p>
+                            <p><strong>Uyruk:</strong> <img src="" alt="Bayrak" class="flag-icon" id="player-flag"> <span id="player-nationality"></span></p>
+                            <p><strong>Boy:</strong> <span id="player-height"></span></p>
+                            <p><strong>Mevki:</strong> <span id="player-position"></span></p>
+                        </div>
+                        <div class="player-stats">
+                            <h4>2024/2025 PROCLUBS İSTATİSTİKLERİ</h4>
+                            <div class="stats-grid">
+                                <div class="stat-item">
+                                    <span>Oynadığı Maç</span>
+                                    <span id="player-matches"></span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Toplam Süre</span>
+                                    <span id="player-minutes"></span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Ofsayt</span>
+                                    <span id="player-offsides"></span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Gol Sayısı</span>
+                                    <span id="player-goals"></span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Asist Sayısı</span>
+                                    <span id="player-assists"></span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Kırmızı Kart</span>
+                                    <span id="player-red-cards"></span>
+                                </div>
+                                <div class="stat-item">
+                                    <span>Maçın Adamı</span>
+                                    <span id="player-man-of-match"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <a href="#" class="details-button" id="player-details-link">DETAYLI BİLGİ</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Oyuncu Seçim Menüsü -->
+            <div class="player-selector">
+                <label for="player-select" class="selector-label">Oyuncu Seçin:</label>
+                <select id="player-select"></select>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sponsorluk Bölümü -->
+    <div class="sponsors-section">
+        <div class="sponsors-container">
+            <h2 class="sponsors-title">SPONSORLAR</h2>
+            <div class="sponsors-grid">
+                <!-- Sponsor 1 -->
+                <div class="sponsor-item">
+                    <img src="Sponsor/puma.png" alt="Sponsor 1" class="sponsor-logo">
+                </div>
+                <!-- Sponsor 2 -->
+                <div class="sponsor-item">
+                    <img src="https://sariyericecek.com.tr/assets/img/site_logo.png" alt="Sponsor 2" class="sponsor-logo">
+                </div>
+                <!-- Sponsor 3 -->
+                <div class="sponsor-item">
+                    <img src="https://logohistory.net/wp-content/uploads/2023/02/Nike-Logo.png" alt="Sponsor 3" class="sponsor-logo">
+                </div>
+                <!-- Sponsor 4 -->
+                <div class="sponsor-item">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Fc-25-logo.png" alt="Sponsor 4" class="sponsor-logo">
+                </div>
+                <!-- Sponsor 5 -->
+                <div class="sponsor-item">
+                    <img src="" alt="" class="">
+                </div>
+                <!-- Sponsor 6 -->
+                <div class="sponsor-item">
+                    <img src="" alt="" class="">
+                </div>
+                <!-- Sponsor 7 -->
+                <div class="sponsor-item">
+                    <img src="" alt="" class="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        const totalSlides = slides.length;
+
+        // Sliderdaki resim kaynaklarını sakla
+        const slideImages = Array.from(slides).map(slide => slide.querySelector('.slide-image').src);
+        let currentModalIndex = 0;
+
+        // Manuel oklarla kaydırma
+        document.querySelector('.left-arrow').addEventListener('click', () => {
+            currentSlide = (currentSlide - 1 + totalSlides) % totalSlides;
+            updateSlider();
+        });
+
+        document.querySelector('.right-arrow').addEventListener('click', () => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        });
+
+        // Otomatik kaydırma (her 5 saniyede bir)
+        setInterval(() => {
+            currentSlide = (currentSlide + 1) % totalSlides;
+            updateSlider();
+        }, 5000);
+
+        function updateSlider() {
+            const slidesContainer = document.querySelector('.slides');
+            slidesContainer.style.transform = `translateX(-${currentSlide * 100}%)`;
+        }
+
+        // Modal fonksiyonları
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = src;
+            currentModalIndex = slideImages.indexOf(src); // Tıklanan resmin index'ini bul
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.style.display = 'none';
+        }
+
+        function prevModalImage() {
+            currentModalIndex = (currentModalIndex - 1 + totalSlides) % totalSlides;
+            document.getElementById('modalImage').src = slideImages[currentModalIndex];
+        }
+
+        function nextModalImage() {
+            currentModalIndex = (currentModalIndex + 1) % totalSlides;
+            document.getElementById('modalImage').src = slideImages[currentModalIndex];
+        }
+
+        // Oyuncu verileri
+        const players = [
+            {
+                name: "Ambatukam",
+                number: "31",
+                birth: "18 Subat 1992 - 33 Yaş",
+                nationality: "ABD",
+                flag: "https://cdn.pixabay.com/photo/2017/03/14/21/00/american-flag-2144392_1280.png",
+                height: "178cm",
+                position: "ST",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "292",
+                assists: "77",
+                redCards: "8",
+                manOfMatch: "67",
+                image: "Resim/Ambatukam.png",
+                detailsLink: "biyografi/Ambatukam/index.html"
+            },
+            {
+                name: "Artish King",
+                number: "10",
+                birth: "15 Ekim 1995 (30)",
+                nationality: "Türkiye",
+                flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/800px-Flag_of_Turkey.svg.png",
+                height: "174cm",
+                position: "MOO",
+                matches: "161",
+                minutes: "14.490 Dakika",
+                offsides: "0",
+                goals: "54",
+                assists: "146",
+                redCards: "0",
+                manOfMatch: "20",
+                image: "Resim/artishking.png",
+                detailsLink: "biyografi/artishking/index.html"
+            },
+            {
+                name: "Miraç Fox",
+                number: "18",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Türkiye",
+                flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/800px-Flag_of_Turkey.svg.png",
+                height: "177cm",
+                position: "LW",
+                matches: "98",
+                minutes: "8.820 Dakika",
+                offsides: "0",
+                goals: "52",
+                assists: "45",
+                redCards: "3",
+                manOfMatch: "2",
+                image: "Resim/image.png",
+                detailsLink: "biyografi/miraçfox/index.html"
+            },
+            {
+                name: "Liang Ji",
+                number: "1",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Brezilya",
+                flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/05/Flag_of_Brazil.svg/1200px-Flag_of_Brazil.svg.png",
+                height: "191cm",
+                position: "GK",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/liang.jpg",
+                detailsLink: "biyografi/Liang ji/index.html"
+            },
+            {
+                name: "Imamu Turkic",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Demokratik Kongo Cumhuriyeti",
+                flag: "https://st3.depositphotos.com/1609929/15158/i/1600/depositphotos_151580512-stock-photo-flag-of-the-democratic-republic.jpg",
+                height: "180cm",
+                position: "LB",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/imamu.jpg",
+                detailsLink: "biyografi/imamu/index.html"
+            },
+            {
+                name: "Kazuma Endo",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Fransa",
+                flag: "https://static4.depositphotos.com/1009841/285/i/450/depositphotos_2858036-stock-photo-flag-of-france.jpg",
+                height: "180cm",
+                position: "LB",
+                matches: "0",
+                minutes: "0 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/kazuma.jpg",
+                detailsLink: "biyografi/Kazuma/index.html"
+            },
+            {
+                name: "Han Yong Chang",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Portekiz",
+                flag: "https://cdn.pixabay.com/photo/2017/08/30/13/15/portugal-2697043_1280.jpg",
+                height: "191cm",
+                position: "CB",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/chang.jpg",
+                detailsLink: "biyografi/Chang/index.html"
+            },
+            {
+                name: "Paula Leon",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Nijerya",
+                flag: "https://vize-ankara.com/wp-content/uploads/2017/02/nijerya-bayrağı.png",
+                height: "191cm",
+                position: "CB",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/Leon.jpg",
+                detailsLink: "biyografi/Paula Leon/index.html"
+            },
+            {
+                name: "Stephane Laporte",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Fransa",
+                flag: "https://static4.depositphotos.com/1009841/285/i/450/depositphotos_2858036-stock-photo-flag-of-france.jpg",
+                height: "191cm",
+                position: "CB",
+                matches: "0",
+                minutes: "0 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/laporte.jpg",
+                detailsLink: "biyografi/Stephane laporte/index.html"
+            },
+            {
+                name: "Ji Hye Gil",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Portekiz",
+                flag: "https://cdn.pixabay.com/photo/2017/08/30/13/15/portugal-2697043_1280.jpg",
+                height: "180cm",
+                position: "RB",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/gil.jpg",
+                detailsLink: "biyografi/Ji Hye Gil/index.html"
+            },
+            {
+                name: "Bang Wei",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "İtalya",
+                flag: "https://www.bayraksepeti.com.tr/imajlar/duyururesim/italya_bayragi_satisi_-_italya_bayragi_satin_al.jpg",
+                height: "180cm",
+                position: "LB",
+                matches: "0",
+                minutes: "0 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/bang.jpg",
+                detailsLink: "biyografi/Bang Wei/index.html"
+            },
+            {
+                name: "Lino Carrillo",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Arjantin",
+                flag: "https://static9.depositphotos.com/1006269/1105/i/950/depositphotos_11057771-stock-photo-argentinian-flag.jpg",
+                height: "183cm",
+                position: "MDO",
+                matches: "0",
+                minutes: "0 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/Lino.jpg",
+                detailsLink: "biyografi/Lino Carrillo/index.html"
+            },
+            {
+                name: "George Preston",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "İngiltere",
+                flag: "https://m.media-amazon.com/images/I/51c3W5I847L._AC_UF1000,1000_QL80_.jpg",
+                height: "180cm",
+                position: "MO",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/preston.jpg",
+                detailsLink: "biyografi/George Preston/index.html"
+            },
+            {
+                name: "Ricciardo Daniels",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Fransa",
+                flag: "https://static4.depositphotos.com/1009841/285/i/450/depositphotos_2858036-stock-photo-flag-of-france.jpg",
+                height: "180cm",
+                position: "MO",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/daniel.jpg",
+                detailsLink: "biyografi/Ricciardo Daniels/index.html"
+            },
+            {
+                name: "Thor Berg",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Norveç",
+                flag: "https://cdn.pixabay.com/photo/2019/11/01/14/50/norway-4594448_1280.jpg",
+                height: "180cm",
+                position: "MO",
+                matches: "0",
+                minutes: "0 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/berg.jpg",
+                detailsLink: "biyografi/thor berg/index.html"
+            },
+            {
+                name: "Altan Bulut",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Türkiye",
+                flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/800px-Flag_of_Turkey.svg.png",
+                height: "175cm",
+                position: "MOO",
+                matches: "0",
+                minutes: "0 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/Bulut.jpg",
+                detailsLink: "biyografi/altan bulut/index.html"
+            },
+            {
+                name: "Marcos Ochoa",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Arjantin",
+                flag: "https://static9.depositphotos.com/1006269/1105/i/950/depositphotos_11057771-stock-photo-argentinian-flag.jpg",
+                height: "175cm",
+                position: "MOO",
+                matches: "0",
+                minutes: "0 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/Marcos.jpg",
+                detailsLink: "biyografi/marcos ochoa/index.html"
+            },
+            {
+                name: "Laurenço Machado",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Portekiz",
+                flag: "https://cdn.pixabay.com/photo/2017/08/30/13/15/portugal-2697043_1280.jpg",
+                height: "168cm",
+                position: "LW",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/Machado.jpg",
+                detailsLink: "biyografi/Machado/index.html"
+            },
+            {
+                name: "Mete Turkic",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "Türkiye",
+                flag: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Flag_of_Turkey.svg/800px-Flag_of_Turkey.svg.png",
+                height: "168cm",
+                position: "RW",
+                matches: "172",
+                minutes: "15.480 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/turkic.jpg",
+                detailsLink: "biyografi/Meteturkic/index.html"
+            },
+            {
+                name: "Zaid Anwar",
+                number: "",
+                birth: "22 Haz 1995 (29)",
+                nationality: "İngiltere",
+                flag: "https://m.media-amazon.com/images/I/51c3W5I847L._AC_UF1000,1000_QL80_.jpg",
+                height: "175cm",
+                position: "ST",
+                matches: "0",
+                minutes: "0 Dakika",
+                offsides: "0",
+                goals: "0",
+                assists: "0",
+                redCards: "0",
+                manOfMatch: "0",
+                image: "Resim/anwar.jpg",
+                detailsLink: "biyografi/zaid anwar/index.html"
+            }
+        ];
+
+        // Select menüsünü doldur
+        function populatePlayerSelect() {
+            const select = document.getElementById('player-select');
+            players.forEach((player, index) => {
+                const option = document.createElement('option');
+                option.value = index;
+                option.textContent = player.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Oyuncu kartını güncelleyen fonksiyon
+        function updatePlayer(playerIndex) {
+            const player = players[playerIndex];
+
+            // Karttaki bilgileri güncelle
+            document.getElementById('player-name').textContent = player.name;
+            document.getElementById('player-number').textContent = player.number;
+            document.getElementById('player-birth').textContent = player.birth;
+            document.getElementById('player-nationality').textContent = player.nationality;
+            document.getElementById('player-flag').src = player.flag;
+            document.getElementById('player-height').textContent = player.height;
+            document.getElementById('player-position').textContent = player.position;
+            document.getElementById('player-matches').textContent = player.matches;
+            document.getElementById('player-minutes').textContent = player.minutes;
+            document.getElementById('player-offsides').textContent = player.offsides;
+            document.getElementById('player-goals').textContent = player.goals;
+            document.getElementById('player-assists').textContent = player.assists;
+            document.getElementById('player-red-cards').textContent = player.redCards;
+            document.getElementById('player-man-of-match').textContent = player.manOfMatch;
+            document.getElementById('player-image').src = player.image;
+            document.getElementById('player-image').alt = player.name;
+            document.getElementById('player-details-link').href = player.detailsLink;
+
+            // Select menüsünü güncelle
+            document.getElementById('player-select').value = playerIndex;
+        }
+
+        // Rastgele oyuncu seçme
+        let randomPlayerInterval;
+        let isManualSelect = false;
+
+        function startRandomPlayer() {
+            randomPlayerInterval = setInterval(() => {
+                if (!isManualSelect) {
+                    const randomIndex = Math.floor(Math.random() * players.length);
+                    updatePlayer(randomIndex);
+                }
+            }, 5000);
+        }
+
+        function stopRandomPlayer() {
+            clearInterval(randomPlayerInterval);
+        }
+
+        // Select değişikliğinde
+        document.getElementById('player-select').addEventListener('change', function() {
+            isManualSelect = true;
+            stopRandomPlayer();
+            updatePlayer(this.value);
+        });
+
+        // Sayfa yüklendiğinde
+        window.onload = function() {
+            populatePlayerSelect(); // Select menüsünü doldur
+            updatePlayer(0); // İlk oyuncuyu yükle
+            startRandomPlayer(); // Rastgele oyuncu değişimini başlat
+        };
+    </script>
+</body>
+</html>

@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kart Örneği</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css"> <!-- Menü için styles.css -->
+    <style>
+        /* Mevcut Stiller (Kupalar ve Rekorlar) */
+        .container {
+            width: 900px;
+            height: 500px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 3px solid yellow;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.7);
+        }
+
+        .container h1,
+        .records-container h1 {
+            font-family: 'Montserrat', sans-serif; 
+            font-size: 36px;
+            font-weight: bold;
+            color: #fff;
+            margin: 10px 0 20px 0;
+            text-align: center;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .card-container {
+            display: flex;
+            justify-content: flex-start;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 10px;
+            width: 100%;
+        }
+
+        .card-container::-webkit-scrollbar {
+            display: none; /* Kaydırma çubuğunu gizle */
+        }
+
+        .card {
+            width: 200px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 3px solid #ffaa00;
+            transition: transform 0.3s ease;
+            flex: 0 0 auto;
+        }
+
+        .card:hover {
+            transform: scale(1.1);
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-name {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            text-align: center;
+            padding: 8px 0;
+            font-family: Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        .team-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .team-section img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        .team-section span {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 40px;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+            transform: perspective(300px) rotateX(20deg);
+            transform-origin: center bottom;
+            display: inline-block;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .records-container {
+            width: 900px;
+            height: 500px;
+            background-color: rgba(0, 0, 0, 0.8);
+            border: 3px solid yellow;
+            border-radius: 10px;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(255, 255, 0, 0.7);
+            position: relative;
+        }
+
+        .record-card {
+            width: 200px;
+            height: 300px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border: 3px solid #ffaa00;
+            transition: transform 0.3s ease;
+            flex: 0 0 auto;
+            cursor: pointer; /* Tıklanabilir olduğunu gösterir */
+        }
+
+        .record-card:hover {
+            transform: scale(1.1);
+        }
+
+        .record-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .record-title {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: #ffaa00;
+            text-align: center;
+            padding: 8px 0;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            border-bottom: 2px solid #ffaa00;
+        }
+
+        .record-content {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            text-align: center;
+            color: white;
+            font-family: Arial, sans-serif;
+            padding: 8px 0;
+        }
+
+        .record-content .player-name {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .record-content .record-value {
+            font-size: 14px;
+            color: #ffaa00;
+        }
+
+        /* Oklar için stiller */
+        .carousel-controls {
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            transform: translateY(-50%);
+            z-index: 10; /* Okların kartların önünde kalmasını sağlar */
+            padding: 0 10px;
+        }
+
+        .carousel-controls button {
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 2px solid #ffaa00;
+            color: #ffaa00;
+            font-size: 30px;
+            padding: 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carousel-controls button:hover {
+            background-color: #ffaa00;
+            color: #000;
+            transform: scale(1.1);
+        }
+
+        .carousel-controls button:focus {
+            outline: none;
+        }
+
+        /* Modal için stiller */
+        .modal {
+            display: none; /* Varsayılan olarak gizli */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8); /* Siyah opak arka plan */
+            z-index: 100; /* En üstte */
+            align-items: center;
+            justify-content: center;
+        }
+
+        .large-card {
+            width: 400px; /* Büyük kart boyutu */
+            height: 600px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            border: 4px solid #ffaa00;
+            transition: transform 0.3s ease;
+        }
+
+        .large-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .large-card .record-title {
+            font-size: 28px; /* Büyük kart için başlık boyutu */
+            padding: 12px 0;
+        }
+
+        .large-card .record-content {
+            padding: 12px 0;
+        }
+
+        .large-card .player-name {
+            font-size: 24px; /* Büyük kart için oyuncu adı */
+        }
+
+        .large-card .record-value {
+            font-size: 20px; /* Büyük kart için değer */
+        }
+    </style>
+</head>
+<body>
+    <!-- Menü Bölümü -->
+    <div class="header">
+        <div class="logo-container">
+            <img src="../../Resim/Marmarasporlogo.png" alt="Marmaraspor Logo" class="logo">
+            <div>
+                <div class="site-title">MARMARASPOR</div>
+                <div class="site-subtitle">RESMİ İNTERNET PLATFORMU</div>
+            </div>
+        </div>
+
+        <div class="nav-links">
+            <a href="../../index.html">ANA SAYFA</a>
+            <!-- Kulüp için açılır menü -->
+            <div class="dropdown">
+                <span class="dropdown-toggle">KULÜP</span>
+                <div class="dropdown-menu">
+                    <a href="../haber/index.html">Kulüp Haberleri</a>
+                    <a href="../Kadro/index.html">Kadro</a>
+                    <a href="../Müze/index.html">Müze</a>
+                </div>
+            </div>
+            <a href="../../Forma Satın Al/index.html">MARMARA STORE</a>
+            <a href="../../iletişim/index.html">İLETİŞİM</a>
+        </div>
+
+        <div class="social-links">
+            <a href="#"></a>
+            <a href="#"></a>
+            <div class="language-options">
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+                <a href="#"></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Kupalar Bölümü -->
+    <div class="container">
+        <h1>KUPALAR</h1>
+        <div class="card-container">
+            <div class="card">
+                <img src="https://images.emojiterra.com/twitter/v13.1/512px/1f614.png" alt="Kart 1">
+                <div class="card-name">Kupa yok.</div>
+            </div>
+        </div>
+        <div class="team-section">
+            <img src="../../Resim/Marmarasporlogo.png" alt="Logo Sol">
+            <span>MARMARASPOR</span>
+            <img src="../../Resim/Marmarasporlogo.png" alt="Logo Sağ">
+        </div>
+    </div>
+
+    <!-- Rekorlar Bölümü -->
+    <div class="records-container">
+        <h1>REKORLAR</h1>
+        <div class="carousel-controls">
+            <button class="prev-btn" onclick="scrollCards('left')">❮</button>
+            <button class="next-btn" onclick="scrollCards('right')">❯</button>
+        </div>
+        <div class="card-container">
+            <div class="record-card" onclick="showLargeCard('EN FAZLA GOL ATAN', '../../Resim/Ambatukam.png', 'AMBATUKAM', '292 GOL')">
+                <div class="record-title">EN FAZLA GOL ATAN</div>
+                <img src="../../Resim/Ambatukam.png" alt="Rekor 1">
+                <div class="record-content">
+                    <div class="player-name">AMBATUKAM</div>
+                    <div class="record-value">292 GOL</div>
+                </div>
+            </div>
+            <div class="record-card" onclick="showLargeCard('EN FAZLA ASİST YAPAN', '../../Resim/artishking.png', 'ARTISH KING', '146 ASSIST')">
+                <div class="record-title">EN FAZLA ASİST YAPAN</div>
+                <img src="../../Resim/artishking.png" alt="Rekor 2">
+                <div class="record-content">
+                    <div class="player-name">ARTISH KING</div>
+                    <div class="record-value">146 ASSIST</div>
+                </div>
+            </div>
+            <div class="record-card" onclick="showLargeCard('EN FAZLA KIRMIZI KART YİYEN', '../../Resim/artishking.png', 'ARTISH KING', '11 KIRMIZI KART')">
+                <div class="record-title">EN FAZLA KIRMIZI KART YİYEN</div>
+                <img src="../../Resim/artishking.png" alt="Rekor 3">
+                <div class="record-content">
+                    <div class="player-name">ARTISH KING</div>
+                    <div class="record-value">11 KIRMIZI KART</div>
+                </div>
+            </div>
+            <div class="record-card" onclick="showLargeCard('EN FAZLA MAÇ', '../../Resim/Ambatukam.png', 'AMBATUKAM', '172 MAÇ')">
+                <div class="record-title">EN FAZLA MAÇ</div>
+                <img src="../../Resim/Ambatukam.png" alt="Rekor 4">
+                <div class="record-content">
+                    <div class="player-name">AMBATUKAM</div>
+                    <div class="record-value">172 MAÇ</div>
+                </div>
+            </div>
+            <div class="record-card" onclick="showLargeCard('EN FAZLA MAÇIN ADAMI', '../../Resim/Ambatukam.png', 'AMBATUKAM', '67 MAÇIN ADAMI')">
+                <div class="record-title">EN FAZLA MAÇIN ADAMI</div>
+                <img src="../../Resim/Ambatukam.png" alt="Rekor 5">
+                <div class="record-content">
+                    <div class="player-name">AMBATUKAM</div>
+                    <div class="record-value">67 MAÇIN ADAMI</div>
+                </div>
+            </div>
+        </div>
+        <div class="team-section">
+            <img src="../../Resim/Marmarasporlogo.png" alt="Logo Sol">
+            <span>MARMARASPOR</span>
+            <img src="../../Resim/Marmarasporlogo.png" alt="Logo Sağ">
+        </div>
+    </div>
+
+    <!-- Modal Bölümü -->
+    <div class="modal" id="cardModal" onclick="closeModal()">
+        <div class="large-card" onclick="event.stopPropagation()">
+            <div class="record-title" id="modalTitle"></div>
+            <img id="modalImage" src="" alt="Büyük Kart">
+            <div class="record-content">
+                <div class="player-name" id="modalPlayerName"></div>
+                <div class="record-value" id="modalRecordValue"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function scrollCards(direction) {
+            const container = document.querySelector('.records-container .card-container');
+            const scrollAmount = 220; // Her kartın genişliği + boşluk
+            if (direction === 'left') {
+                container.scrollLeft -= scrollAmount;
+            } else {
+                container.scrollLeft += scrollAmount;
+            }
+        }
+
+        function showLargeCard(title, imageSrc, playerName, recordValue) {
+            const modal = document.getElementById('cardModal');
+            document.getElementById('modalTitle').textContent = title;
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('modalPlayerName').textContent = playerName;
+            document.getElementById('modalRecordValue').textContent = recordValue;
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('cardModal');
+            modal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>

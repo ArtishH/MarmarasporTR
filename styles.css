@@ -1,0 +1,627 @@
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(to right, #FFC107, #FF5722);
+    font-family: 'Montserrat', sans-serif;
+}
+
+.header {
+    background-color: #000;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #FFC107;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 106px;
+    height: 105px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.site-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #FFC107;
+}
+
+.site-subtitle {
+    font-size: 16px;
+    color: #928c8c;
+}
+
+.nav-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-links a {
+    color: #FFC107;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav-links a:hover {
+    color: #FF5722;
+}
+
+/* Açılır Menü Stilleri */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown-toggle {
+    color: #FFC107;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown-toggle:hover {
+    color: #FF5722;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #1a1a1a;
+    border: 2px solid #FFC107;
+    border-radius: 5px;
+    padding: 10px;
+    min-width: 150px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown-menu a {
+    display: block;
+    color: #FFC107;
+    padding: 8px 10px;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: normal;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.dropdown-menu a:hover {
+    background-color: #FF5722;
+    color: #000;
+    border-radius: 3px;
+}
+
+.social-links {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.social-links a {
+    color: #FFC107;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.social-links a:hover {
+    color: #FF5722;
+}
+
+.language-options {
+    display: flex;
+    gap: 10px;
+}
+
+.language-options a {
+    color: #FFC107;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.language-options a:hover {
+    color: #FF5722;
+}
+
+/* Banner (Slider) Stilleri */
+.banner {
+    background-color: #1a1a1a;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.slider {
+    width: 100%;
+    height: 100%;
+}
+
+.slides {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.5s ease-in-out;
+}
+
+.slide {
+    min-width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slide-image {
+    width: 32%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.banner-arrow {
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 0 20px;
+    z-index: 10;
+}
+
+.banner-arrow:hover {
+    color: #FFC107;
+}
+
+.left-arrow {
+    position: absolute;
+    left: 10px;
+}
+
+.right-arrow {
+    position: absolute;
+    right: 10px;
+}
+
+/* Son Dakika Haberler Bölümü Stilleri */
+.breaking-news-section {
+    padding: 40px 20px;
+    background-color: transparent;
+}
+
+.breaking-news-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(26, 26, 26, 0.9);
+    border: 2px solid #FFC107;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.breaking-news-title {
+    text-align: center;
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #FFC107;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.breaking-news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.breaking-news-card {
+    background-color: #1a1a1a;
+    border: 2px solid #FFC107;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    animation: bounce 1.5s infinite;
+}
+
+.breaking-news-card:hover {
+    transform: translateY(-5px);
+    animation-play-state: paused;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.breaking-news-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-right: 15px;
+}
+
+.breaking-news-content {
+    flex: 1;
+}
+
+.breaking-news-label {
+    display: inline-block;
+    background-color: #e63946;
+    color: #fff;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.breaking-news-headline {
+    font-size: 20px;
+    color: #FF5722;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.breaking-news-summary {
+    font-size: 14px;
+    color: #FFC107;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.breaking-news-button {
+    display: inline-block;
+    padding: 8px 15px;
+    background-color: #FFC107;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.breaking-news-button:hover {
+    background-color: #FF5722;
+}
+
+/* Oyuncular Bölümü Stilleri */
+.players-section {
+    padding: 40px 20px;
+    background-color: transparent;
+}
+
+.players-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: rgba(26, 26, 26, 0.9);
+    border: 2px solid #FFC107;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.players-title {
+    text-align: center;
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #FFC107;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.players-grid {
+    display: flex;
+    justify-content: center;
+}
+
+.player-card {
+    background-color: #1a1a1a;
+    border: 2px solid #FFC107;
+    border-radius: 10px;
+    display: flex;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease;
+    width: 100%;
+    max-width: 600px;
+    align-items: stretch;
+}
+
+.player-card:hover {
+    transform: translateY(-5px);
+}
+
+.player-image-container {
+    flex: 0 0 40%;
+    background-color: #003087;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.player-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.player-info {
+    flex: 1;
+    padding: 15px;
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.player-name {
+    font-size: 24px;
+    color: #FF5722;
+    font-weight: bold;
+}
+
+.player-number {
+    font-size: 20px;
+    color: #FFC107;
+    font-weight: bold;
+}
+
+.player-details {
+    margin-bottom: 15px;
+}
+
+.player-details p {
+    font-size: 14px;
+    color: #FFC107;
+    margin: 5px 0;
+}
+
+.player-details p strong {
+    color: #fff;
+}
+
+.flag-icon {
+    width: 20px;
+    height: 15px;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.player-stats h4 {
+    font-size: 18px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    text-align: center;
+}
+
+.stat-item {
+    background-color: #2a2a2a;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.stat-item span:first-child {
+    display: block;
+    font-size: 12px;
+    color: #FFC107;
+    margin-bottom: 5px;
+}
+
+.stat-item span:last-child {
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+}
+
+.details-button {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #FFC107;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.details-button:hover {
+    background-color: #FF5722;
+}
+
+/* Oyuncu Seçim Menüsü Stilleri */
+.player-selector {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.selector-label {
+    font-size: 16px;
+    color: #FFC107;
+    margin-right: 10px;
+}
+
+#player-select {
+    padding: 8px 15px;
+    font-size: 14px;
+    color: #000;
+    background-color: #FFC107;
+    border: 2px solid #FF5722;
+    border-radius: 5px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+}
+
+#player-select:hover {
+    background-color: #FF5722;
+    color: #fff;
+}
+
+/* Sponsorluk Bölümü Stilleri */
+.sponsors-section {
+    padding: 40px 20px;
+    background-color: transparent;
+}
+
+.sponsors-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    background-color: rgba(51, 51, 51, 0.9);
+    border: 2px solid #FFC107;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.sponsors-title {
+    text-align: center;
+    font-size: 36px;
+    color: #fff;
+    margin-bottom: 30px;
+    text-transform: uppercase;
+    border-bottom: 3px solid #FFC107;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+.sponsors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    justify-items: center;
+}
+
+.sponsor-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.sponsor-logo {
+    width: 150px;
+    height: 75px;
+    object-fit: contain;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.sponsor-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 10px #FFC107;
+}
+
+/* Modal Stilleri */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #1a1a1a;
+    border: 2px solid #FFC107;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    padding: 20px;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-button {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #FFC107;
+    cursor: pointer;
+}
+
+.close-button:hover {
+    color: #FF5722;
+}
+
+.modal-image {
+    display: block;
+    border-radius: 5px;
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+}
+
+.modal-arrow {
+    color: #fff;
+    font-size: 40px;
+    cursor: pointer;
+    padding: 0 20px;
+    z-index: 10;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.modal-arrow:hover {
+    color: #FFC107;
+}
+
+.left-modal-arrow {
+    left: 10px;
+}
+
+.right-modal-arrow {
+    right: 10px;
+}
