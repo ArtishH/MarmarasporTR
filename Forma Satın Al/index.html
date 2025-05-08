@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -29,49 +30,107 @@
             </div>
             <a href="index.html">MARMARA STORE</a>
             <a href="../iletişim/index.html">İLETİŞİM</a>
-        </div>
-
-        <div class="social-links">
-            <a href="#"></a>
-            <a href="#"></a>
-            <div class="language-options">
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-                <a href="#"></a>
-            </div>
+        </div>     
+        <div class="icon-group">
             <div class="cart-icon">🛒 Sepet (<span id="cart-count">0</span>)</div>
+            <div class="favorites-icon">❤️ Favoriler (<span id="favorites-count">0</span>)</div>
+        </div>
+        <div class="user-group">
+            <div class="login-btn" id="login-btn">Giriş Yap</div>
+            <div class="register-btn" id="register-btn">Kayıt Ol</div>
+            <div class="logout-btn" id="logout-btn" style="display: none;">Çıkış Yap</div>
+            <span id="user-greeting" style="display: none;"></span>
         </div>
     </div>
 
+    <!-- Favoriler Bölümü -->
+    <div class="favorites-section" id="favorites-section">
+        <h2>Favorilerim</h2>
+        <div id="favorites-items"></div>
+        <button class="close-favorites">Kapat</button>
+    </div>
+
+    <!-- Bildirim Alanı -->
+    <div class="notification" id="notification"></div>
+
     <!-- Ürünler Bölümü (Formalar ve Forma Dışı Ürünler) -->
     <div class="jerseys-wrapper">
-        <!-- Forma 1 -->
-        <div class="jersey-container" data-id="1" data-type="jersey">
-            <img src="Resim/1.forma.png" alt="Jersey 1" class="jersey-image">
+        
+        <div class="jersey-container" data-id="20" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="20">♡</button>
+            <img src="https://i.hizliresim.com/j7bxxlk.png" alt="Jersey 1" class="jersey-image">
             <h2 class="jersey-name">MARMARASPOR EV SAHIBI FORMASI</h2>
             <div class="price-container">
                 <span class="current-price">1.200,00 ₺</span>
             </div>
         </div>
-        <!-- Forma 2 -->
-        <div class="jersey-container" data-id="2" data-type="jersey">
-            <img src="Resim/2.forma.png" alt="Jersey 2" class="jersey-image">
+        <div class="jersey-container" data-id="21" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="21">♡</button>
+            <img src="https://i.hizliresim.com/jrergfb.png" alt="Jersey 1" class="jersey-image">
             <h2 class="jersey-name">MARMARASPOR DEPLASMAN FORMASI</h2>
             <div class="price-container">
                 <span class="current-price">1.200,00 ₺</span>
             </div>
         </div>
-        <!-- Forma 3 -->
-        <div class="jersey-container" data-id="3" data-type="jersey">
-            <img src="Resim/3.forma.png" alt="Jersey 3" class="jersey-image">
+        <div class="jersey-container" data-id="22" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="22">♡</button>
+            <img src="https://i.hizliresim.com/lu6bo4n.png" alt="Jersey 1" class="jersey-image">
             <h2 class="jersey-name">MARMARASPOR ÜÇÜNCÜ FORMASI</h2>
             <div class="price-container">
                 <span class="current-price">1.200,00 ₺</span>
             </div>
         </div>
-        <!-- Forma Dışı Ürün -->
+        <div class="jersey-container" data-id="20" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="20">♡</button>
+            <img src="https://i.hizliresim.com/krnkq39.png" alt="Jersey 1" class="jersey-image">
+            <h2 class="jersey-name">Artish King Forması(Ev Sahibi)</h2>
+            <div class="price-container">
+                <span class="current-price">1.900,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="20" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="20">♡</button>
+            <img src="https://i.hizliresim.com/24gpmxz.png" alt="Jersey 1" class="jersey-image">
+            <h2 class="jersey-name">Ambatukam Forması(Ev Sahibi)</h2>
+            <div class="price-container">
+                <span class="current-price">1.900,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="20" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="20">♡</button>
+            <img src="https://i.hizliresim.com/trjae3g.png" alt="Jersey 1" class="jersey-image">
+            <h2 class="jersey-name">Miraç Fox Forması(Ev Sahibi)</h2>
+            <div class="price-container">
+                <span class="current-price">1.900,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="1" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="1">♡</button>
+            <img src="Resim/1.forma.png" alt="Jersey 1" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR EV SAHIBI FORMASI(Eski)</h2>
+            <div class="price-container">
+                <span class="current-price">500,00 ₺ <s>1.200,00 ₺</s></span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="2" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="2">♡</button>
+            <img src="Resim/2.forma.png" alt="Jersey 2" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR DEPLASMAN FORMASI(Eski)</h2>
+            <div class="price-container">
+                <span class="current-price">500,00 ₺ <s>1.200,00 ₺</s></span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="3" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="3">♡</button>
+            <img src="Resim/3.forma.png" alt="Jersey 3" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR ÜÇÜNCÜ FORMASI(Eski)</h2>
+            <div class="price-container">
+               
+                <span class="current-price">500,00 ₺ <s>1.200,00 ₺</s></span>
+            </div>
+        </div>
         <div class="jersey-container" data-id="4" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="4">♡</button>
             <img src="Resim/Atkı.png" alt="Scarf" class="jersey-image">
             <h2 class="jersey-name">MARMARASPOR ATKI</h2>
             <div class="price-container">
@@ -79,76 +138,165 @@
             </div>
         </div>
         <div class="jersey-container" data-id="5" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="5">♡</button>
             <img src="https://i.hizliresim.com/8pbslsr.png" alt="Scarf" class="jersey-image">
             <h2 class="jersey-name">AMBATUKAM OYUNCAĞI</h2>
             <div class="price-container">
                 <span class="current-price">2.800,00 ₺</span>
             </div>
         </div>
-<div class="jersey-container" data-id="5" data-type="accessory">
+        <div class="jersey-container" data-id="6" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="6">♡</button>
             <img src="https://i.hizliresim.com/feuirfg.png" alt="Scarf" class="jersey-image">
             <h2 class="jersey-name">AMBATUKAM OYUNCAĞI</h2>
             <div class="price-container">
                 <span class="current-price">2.800,00 ₺</span>
             </div>
         </div>
- <div class="jersey-container" data-id="5" data-type="accessory">
+        <div class="jersey-container" data-id="7" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="7">♡</button>
             <img src="https://i.hizliresim.com/bn8ipkd.png" alt="Scarf" class="jersey-image">
             <h2 class="jersey-name">AMBATUKAM OYUNCAĞI</h2>
             <div class="price-container">
                 <span class="current-price">2.800,00 ₺</span>
             </div>
         </div>
-        <div class="jersey-container" data-id="6" data-type="accessory">
+        <div class="jersey-container" data-id="8" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="8">♡</button>
             <img src="https://resmim.net/cdn/2025/04/13/N7ctZk.png" alt="Scarf" class="jersey-image">
             <h2 class="jersey-name">MİRAÇ FOX OYUNCAĞI</h2>
             <div class="price-container">
                 <span class="current-price">2.800,00 ₺</span>
             </div>
         </div>
-        <div class="jersey-container" data-id="7" data-type="accessory">
+        <div class="jersey-container" data-id="9" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="9">♡</button>
             <img src="https://resmim.net/cdn/2025/04/13/N7ce8y.png" alt="Scarf" class="jersey-image">
             <h2 class="jersey-name">ARTISH KING OYUNCAĞI</h2>
             <div class="price-container">
                 <span class="current-price">2.800,00 ₺</span>
             </div>
         </div>
-        <div class="jersey-container" data-id="8" data-type="accessory">
+        <div class="jersey-container" data-id="10" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="10">♡</button>
             <img src="Resim/Telefon Kılıfı.png" alt="Scarf" class="jersey-image">
             <h2 class="jersey-name">MARMARASPOR TELEFON KILIFI</h2>
             <div class="price-container">
                 <span class="current-price">500,00 ₺</span>
             </div>
         </div>
-        <div class="jersey-container" data-id="9" data-type="jersey">
+        <div class="jersey-container" data-id="11" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="11">♡</button>
             <img src="https://resmim.net/cdn/2025/04/13/N7c6HG.png" alt="jersey" class="jersey-image">
             <h2 class="jersey-name">MARMARASPOR CEKET</h2>
             <div class="price-container">
                 <span class="current-price">1.200,00 ₺</span>
             </div>
         </div>
-        <div class="jersey-container" data-id="10" data-type="accessory">
+        <div class="jersey-container" data-id="12" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="12">♡</button>
             <img src="https://resmim.net/cdn/2025/04/13/N7cio2.png" alt="Scarf" class="jersey-image">
             <h2 class="jersey-name">MARMARASPOR BERE</h2>
             <div class="price-container">
                 <span class="current-price">600,00 ₺</span>
             </div>
         </div>
-        <div class="jersey-container" data-id="10" data-type="accessory">
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
             <img src="Resim/Canta.png" alt="Scarf" class="jersey-image">
-            <h2 class="jersey-name">MARMARASPOR CANTA </h2>
+            <h2 class="jersey-name">MARMARASPOR CANTA</h2>
             <div class="price-container">
                 <span class="current-price">200,00 ₺</span>
             </div>
         </div>
-        <div class="jersey-container" data-id="9" data-type="jersey">
+        <div class="jersey-container" data-id="14" data-type="jersey">
+            <button class="favorite-btn large-favorite-btn" data-id="14">♡</button>
             <img src="Resim/Mont.png" alt="jersey" class="jersey-image">
             <h2 class="jersey-name">MARMARASPOR MONT</h2>
             <div class="price-container">
                 <span class="current-price">1.000,00 ₺</span>
             </div>
         </div>
-        
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://resmim.net/cdn/2025/05/07/NGbwUH.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR MOUSEPAD</h2>
+            <div class="price-container">
+                <span class="current-price">300,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://i.hizliresim.com/aqx4gj6.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR KAHVE BARDAĞI</h2>
+            <div class="price-container">
+                <span class="current-price">290,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://i.hizliresim.com/3dqeh3a.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MİRAÇ FOX MASKESİ</h2>
+            <div class="price-container">
+                <span class="current-price">1.290,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://i.hizliresim.com/lemma7g.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR CÜZDAN</h2>
+            <div class="price-container">
+                <span class="current-price">1.090,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://i.hizliresim.com/hjf98wd.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR HAVLU</h2>
+            <div class="price-container">
+                <span class="current-price">790,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://i.hizliresim.com/ef6exe9.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR ROZETI</h2>
+            <div class="price-container">
+                <span class="current-price">690,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://i.hizliresim.com/9no48ve.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR YASTIK</h2>
+            <div class="price-container">
+                <span class="current-price">640,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://i.hizliresim.com/ogobxrs.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR SAAT</h2>
+            <div class="price-container">
+                <span class="current-price">440,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://i.hizliresim.com/2fu4b9h.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR YORGAN</h2>
+            <div class="price-container">
+                <span class="current-price">440,00 ₺</span>
+            </div>
+        </div>
+        <div class="jersey-container" data-id="13" data-type="accessory">
+            <button class="favorite-btn large-favorite-btn" data-id="13">♡</button>
+            <img src="https://www.mertoptik.com/UserFiles/ProductImages/0/2eyepstanl/orj/eyepetizer-stanley-unisex-gunes-gozlugu-2eyep-stanley-c3-c7g-70135.png" alt="Scarf" class="jersey-image">
+            <h2 class="jersey-name">MARMARASPOR GÜNEŞ GÖZLÜĞÜ</h2>
+            <div class="price-container">
+                <span class="current-price">1.440,00 ₺</span>
+            </div>
+        </div>
     </div>
 
     <!-- Ürün Detay -->
@@ -195,6 +343,46 @@
         <button class="close-cart">Kapat</button>
     </div>
 
+    <!-- Kayıt Ol Modal -->
+    <div class="register-modal" id="register-modal">
+        <div class="modal-content">
+            <span class="close-register">×</span>
+            <h2>Kayıt Ol</h2>
+            <form id="register-form">
+                <label>Kullanıcı Adı:</label>
+                <input type="text" id="register-username" required>
+                <label>Şifre:</label>
+                <input type="password" id="register-password" required>
+                <button type="submit">Kayıt Ol</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Giriş Yap Modal -->
+    <div class="login-modal" id="login-modal">
+        <div class="modal-content">
+            <span class="close-login">×</span>
+            <h2>Giriş Yap</h2>
+            <form id="login-form">
+                <label>Kullanıcı Adı:</label>
+                <input type="text" id="login-username" required>
+                <label>Şifre:</label>
+                <input type="password" id="login-password" required>
+                <button type="submit">Giriş Yap</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Sipariş Durumu Paneli -->
+    <div class="order-status-panel" id="order-status-panel">
+        <h3>Sipariş Durumu</h3>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p id="order-status-text">Siparişiniz kargoya veriliyor...</p>
+        <button class="complete-btn" id="complete-btn" style="display: none;">Tamam</button>
+    </div>
+
     <!-- Ödeme Formu -->
     <div class="checkout-modal" id="checkout-modal">
         <div class="modal-content">
@@ -231,7 +419,7 @@
                     <h2>MARMARASPOR</h2>
                 </div>
                 <div class="success-icon">✔</div>
-                <p>Siparişiniz alındı!</p>
+                <p id="success-message">Siparişiniz alındı!</p>
                 <button class="close-success-btn">Kapat</button>
             </div>
         </div>
