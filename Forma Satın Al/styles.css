@@ -1,7 +1,11 @@
+/* Global Styling */
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Poppins', sans-serif;
     margin: 0;
-    background-color: #817d7d;
+    background: linear-gradient(135deg, #1a1a1a 0%, #2c2c2c 100%);
+    color: #ffd000;
+    position: relative;
+    line-height: 1.6;
 }
 
 /* Header (Menu) Styling */
@@ -9,48 +13,75 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #e2e2e260;
-    padding: 10px 20px;
-    color: white;
+    background: #000000;
+    padding: 15px 40px;
+    color: #ffd000;
     position: sticky;
     top: 0;
     z-index: 100;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
 }
 
 .logo-container {
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .logo {
-    width: 80px;
-    height: 80px;
+    width: 70px;
+    height: 70px;
+    transition: transform 0.3s ease;
+}
+
+.logo:hover {
+    transform: rotate(360deg);
 }
 
 .site-title {
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: 1px;
 }
 
 .site-subtitle {
-    font-size: 12px;
+    font-size: 14px;
+    opacity: 0.7;
+    font-style: italic;
 }
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     align-items: center;
 }
 
 .nav-links a {
-    color: white;
+    color: #ffd000;
     text-decoration: none;
     font-size: 16px;
+    font-weight: 500;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #ffd000;
+    transition: width 0.3s ease;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
 }
 
 .nav-links a:hover {
-    color: #ddd;
+    color: #ffeb3b;
 }
 
 .dropdown {
@@ -59,102 +90,281 @@ body {
 
 .dropdown-toggle {
     cursor: pointer;
-    font-size: 16px;
+    font-size: 16
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.dropdown-toggle:hover {
+    color: #ffeb3b;
 }
 
 .dropdown-menu {
     display: none;
     position: absolute;
-    background-color: #444;
-    min-width: 150px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    background: #1a1a1a;
+    min-width: 200px;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
     z-index: 1;
     top: 100%;
     left: 0;
+    padding: 10px 0;
+    border: 1px solid #ffd000;
 }
 
 .dropdown-menu a {
     display: block;
-    padding: 10px;
-    color: white;
+    padding: 12px 20px;
+    color: #ffd000;
     text-decoration: none;
+    font-size: 14px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .dropdown-menu a:hover {
-    background-color: #555;
+    background-color: #ffd000;
+    color: #000000;
 }
 
 .dropdown:hover .dropdown-menu {
     display: block;
 }
 
-.social-links {
+.icon-group {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.user-group {
     display: flex;
     gap: 10px;
     align-items: center;
 }
 
-.social-links a, .language-options a {
-    width: 20px;
-    height: 20px;
-    background-color: #555;
-    border-radius: 50%;
-}
-
-.cart-icon {
+.login-btn,
+.register-btn,
+.logout-btn {
     cursor: pointer;
     font-size: 16px;
-    background-color: #444;
-    padding: 5px 10px;
-    border-radius: 5px;
+    background: #ffd000;
+    color: #000000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Ürünler Styling */
-.jerseys-wrapper {
+.login-btn:hover,
+.register-btn:hover,
+.logout-btn:hover {
+    background: #ffeb3b;
+    transform: scale(1.1);
+}
+
+#user-greeting {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffd000;
+}
+
+.cart-icon,
+.favorites-icon {
+    cursor: pointer;
+    font-size: 20px;
+    background: #000000;
+    color: #ffd000;
+    padding: 10px 15px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.cart-icon:hover,
+.favorites-icon:hover {
+    background: #ffeb3b;
+    transform: scale(1.1);
+}
+
+/* Notification Styling */
+.notification {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #000000;
+    color: #ffd000;
+    padding: 15px 30px;
+    border-radius: 12px;
+    z-index: 5000;
+    display: none;
+    font-size: 16px;
+    text-align: center;
+    border: 1px solid #ffd000;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+    min-width: 200px;
+}
+
+/* Favorites Section Styling */
+.favorites-section {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 450px;
+    height: 100%;
+    background: #1a1a1a;
+    box-shadow: -6px 0 25px rgba(0, 0, 0, 0.4);
+    padding: 40px;
+    z-index: 1000;
+    overflow-y: auto;
+    color: #ffd000;
+}
+
+.favorites-section h2 {
+    margin-top: 0;
+    font-size: 32px;
+    font-weight: 600;
+    color: #ffd000;
+    border-bottom: 2px solid #ffd000;
+    padding-bottom: 15px;
+}
+
+.favorite-item {
     display: flex;
-    gap: 20px;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 20px;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #ffd000;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.favorite-item:hover {
+    background: #2c2c2c;
+}
+
+.favorite-item img {
+    width: 70px;
+    height: 84px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #ffd000;
+}
+
+.favorite-item-details {
+    flex: 1;
+}
+
+.favorite-item-details span {
+    display: block;
+    font-size: 16px;
+    color: #ffd000;
+}
+
+.close-favorites {
+    width: 100%;
+    padding: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #ffd000;
+    border: none;
+    color: #000000;
+    font-weight: 600;
+    transition: background-color 0.3s ease;
+}
+
+.close-favorites:hover {
+    background: #ffeb3b;
+}
+
+/* Products Styling */
+.jerseys-wrapper {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 30px;
+    padding: 40px;
+    background: transparent;
 }
 
 .jersey-container {
     text-align: center;
-    background-color: white;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
     cursor: pointer;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #ffd000;
+}
+
+.jersey-container:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+}
+
+.favorite-btn {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ffd000;
+    z-index: 1;
+    padding: 8px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.favorite-btn.large-favorite-btn {
+    font-size: 32px;
+    padding: 12px;
+}
+
+.favorite-btn.favorited {
+    color: #ff5555;
+}
+
+.favorite-btn:hover {
+    transform: scale(1.2);
 }
 
 .jersey-image {
-    width: 300px;
-    height: 400px;
+    width: 100%;
+    height: 280px;
     object-fit: cover;
-    margin-bottom: 20px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ffd000;
 }
 
 .jersey-name {
-    font-size: 18px;
-    font-weight: bold;
+    font-size: 20px;
+    font-weight: 600;
     margin-bottom: 10px;
-    color: #333;
+    color: #ffd000;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .price-container {
     padding: 10px;
-    background-color: #f9f9f9;
-    border-radius: 5px;
+    background: #2c2c2c;
+    border-radius: 10px;
+    margin-top: 10px;
 }
 
 .current-price {
-    font-size: 18px;
-    font-weight: bold;
-    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffd000;
 }
 
-/* Ürün Modal Styling */
+/* Product Modal Styling */
 .jersey-modal {
     display: none;
     position: fixed;
@@ -162,37 +372,55 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 1000;
 }
 
 .modal-content {
-    background-color: white;
+    background: #1a1a1a;
     margin: 5% auto;
-    padding: 20px;
-    width: 80%;
-    max-width: 800px;
-    border-radius: 10px;
+    padding: 40px;
+    width: 90%;
+    max-width: 1000px;
+    border-radius: 20px;
     position: relative;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ffd000;
+    color: #ffd000;
 }
 
-.close-modal, .close-checkout {
+.close-modal,
+.close-checkout,
+.close-register,
+.close-login {
     position: absolute;
-    top: 10px;
-    right: 20px;
-    font-size: 24px;
+    top: 20px;
+    right: 40px;
+    font-size: 32px;
     cursor: pointer;
+    color: #ffd000;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.close-modal:hover,
+.close-checkout:hover,
+.close-register:hover,
+.close-login:hover {
+    color: #ffeb3b;
+    transform: rotate(90deg);
 }
 
 .modal-body {
     display: flex;
-    gap: 20px;
+    gap: 40px;
 }
 
 .modal-jersey-image {
-    width: 300px;
-    height: 400px;
+    width: 400px;
+    height: 500px;
     object-fit: cover;
+    border-radius: 15px;
+    border: 1px solid #ffd000;
 }
 
 .modal-details {
@@ -200,170 +428,305 @@ body {
 }
 
 .size-selector {
-    margin: 20px 0;
+    margin: 40px 0;
 }
 
 .sizes {
     display: flex;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 15px;
+    margin-top: 15px;
 }
 
 .size-btn {
-    padding: 10px;
-    border: 1px solid #ccc;
-    background-color: #f9f9f9;
+    padding: 14px 20px;
+    border: 1px solid #ffd000;
+    background: #2c2c2c;
     cursor: pointer;
+    border-radius: 10px;
+    color: #ffd000;
+    font-weight: 500;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .size-btn.selected {
-    background-color: #333;
-    color: white;
+    background: #ffd000;
+    color: #000000;
 }
 
 .quantity-selector {
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .quantity-selector label {
-    font-size: 16px;
-    font-weight: bold;
+    font-size: 18px;
+    font-weight: 600;
+    color: #ffd000;
 }
 
 .quantity-selector input {
-    width: 60px;
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    width: 80px;
+    padding: 10px;
+    border: 1px solid #ffd000;
+    border-radius: 10px;
     font-size: 16px;
     text-align: center;
+    background: #2c2c2c;
+    color: #ffd000;
 }
 
 .selected-price {
-    margin-top: 20px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
+    margin-top: 40px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffd000;
 }
 
 .selected-price span:first-child {
-    color: #555;
+    color: #b08930;
 }
 
 .add-to-cart-btn {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
+    background: #ffd000;
+    color: #000000;
+    padding: 16px 30px;
     border: none;
     cursor: pointer;
     width: 100%;
-    margin-top: 20px;
+    margin-top: 40px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Sepet Bölümü Styling */
+.add-to-cart-btn:hover {
+    background: #ffeb3b;
+    transform: scale(1.02);
+}
+
+/* Register and Login Modal Styling */
+.register-modal,
+.login-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+}
+
+.register-modal .modal-content,
+.login-modal .modal-content {
+    background: #1a1a1a;
+    margin: 10% auto;
+    padding: 40px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ffd000;
+    color: #ffd000;
+}
+
+#register-form,
+#login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#register-form label,
+#login-form label {
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffd000;
+}
+
+#register-form input,
+#login-form input {
+    padding: 14px;
+    border: 1px solid #ffd000;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #2c2c2c;
+    color: #ffd000;
+}
+
+#register-form button,
+#login-form button {
+    background: #ffd000;
+    color: #000000;
+    padding: 16px;
+    border: none;
+    cursor: pointer;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+#register-form button:hover,
+#login-form button:hover {
+    background: #ffeb3b;
+    transform: scale(1.02);
+}
+
+/* Cart Section Styling */
 .cart-section {
     display: none;
     position: fixed;
     top: 0;
     right: 0;
-    width: 350px;
+    width: 450px;
     height: 100%;
-    background-color: #fff;
-    box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
-    padding: 20px;
+    background: #1a1a1a;
+    box-shadow: -6px 0 25px rgba(0, 0, 0, 0.4);
+    padding: 40px;
     z-index: 1000;
     overflow-y: auto;
+    color: #ffd000;
 }
 
 .cart-section h2 {
     margin-top: 0;
-    font-size: 24px;
-    color: #333;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 10px;
+    font-size: 32px;
+    font-weight: 600;
+    color: #ffd000;
+    border-bottom: 2px solid #ffd000;
+    padding-bottom: 15px;
 }
 
 .cart-item {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
-    margin-bottom: 10px;
+    gap: 15px;
+    padding: 15px;
+    border-bottom: 1px solid #ffd000;
+    margin-bottom: 15px;
+    transition: background-color 0.3s ease;
+}
+
+.cart-item:hover {
+    background: #2c2c2c;
 }
 
 .cart-item img {
-    width: 50px;
-    height: 60px;
+    width: 70px;
+    height: 84px;
     object-fit: cover;
-    border-radius: 5px;
+    border-radius: 10px;
+    border: 1px solid #ffd000;
 }
 
 .cart-item-details {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
 }
 
 .cart-item-details span {
     display: block;
-    font-size: 14px;
-    color: #333;
-}
-
-.cart-item-details .quantity {
-    font-weight: bold;
-    color: #555;
+    font-size: 16px;
+    color: #ffd000;
 }
 
 .cart-item-details .price {
-    font-weight: bold;
-    color: #333;
+    font-weight: 700;
+    color: #ffd000;
+}
+
+.quantity-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.quantity-btn {
+    width: 32px;
+    height: 32px;
+    background: #2c2c2c;
+    color: #ffd000;
+    border: 1px solid #ffd000;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
+}
+
+.quantity-btn:hover {
+    background: #ffd000;
+    color: #000000;
+    transform: scale(1.1);
+}
+
+.quantity-btn:active {
+    transform: scale(0.95);
+}
+
+.quantity {
+    font-size: 16px;
+    font-weight: 600;
+    color: #ffd000;
+    min-width: 20px;
+    text-align: center;
 }
 
 .total-price {
-    font-size: 18px;
-    font-weight: bold;
-    margin: 20px 0;
+    font-size: 22px;
+    font-weight: 700;
+    margin: 40px 0;
     text-align: right;
-    color: #333;
-    border-top: 1px solid #eee;
-    padding-top: 10px;
+    color: #ffd000;
+    border-top: 2px solid #ffd000;
+    padding-top: 15px;
 }
 
-.checkout-btn, .close-cart {
+.checkout-btn,
+.close-cart {
     width: 100%;
-    padding: 12px;
-    margin-top: 10px;
+    padding: 16px;
+    margin-top: 15px;
     cursor: pointer;
-    border-radius: 5px;
-    font-size: 16px;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
 }
 
 .checkout-btn {
-    background-color: #333;
-    color: white;
+    background: #ffd000;
+    color: #000000;
     border: none;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .checkout-btn:hover {
-    background-color: #555;
+    background: #ffeb3b;
+    transform: scale(1.02);
 }
 
 .close-cart {
-    background-color: #eee;
-    border: none;
-    color: #333;
-    transition: background-color 0.3s;
+    background: #2c2c2c;
+    border: 1px solid #ffd000;
+    color: #ffd000;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .close-cart:hover {
-    background-color: #ddd;
+    background: #ffd000;
+    color: #000000;
 }
 
-/* Ödeme Modal Styling */
+/* Checkout Modal Styling */
 .checkout-modal {
     display: none;
     position: fixed;
@@ -371,35 +734,49 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 1000;
 }
 
 #checkout-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
 }
 
 #checkout-form label {
-    font-weight: bold;
+    font-weight: 600;
+    font-size: 16px;
+    color: #ffd000;
 }
 
 #checkout-form input {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 14px;
+    border: 1px solid #ffd000;
+    border-radius: 10px;
+    font-size: 16px;
+    background: #2c2c2c;
+    color: #ffd000;
 }
 
 #checkout-form button {
-    background-color: #333;
-    color: white;
-    padding: 10px;
+    background: #ffd000;
+    color: #000000;
+    padding: 16px;
     border: none;
     cursor: pointer;
+    border-radius: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* Yükleme Modal Styling */
+#checkout-form button:hover {
+    background: #ffeb3b;
+    transform: scale(1.02);
+}
+
+/* Loading Modal Styling */
 .loading-modal {
     display: none;
     position: fixed;
@@ -407,35 +784,43 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 1000;
 }
 
 .loading-modal .modal-content {
-    background-color: white;
+    background: #1a1a1a;
     margin: 20% auto;
-    padding: 20px;
-    width: 300px;
+    padding: 40px;
+    width: 350px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ffd000;
+    color: #ffd000;
 }
 
 .loading-spinner {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #333;
+    border: 6px solid #2c2c2c;
+    border-top: 6px solid #ffd000;
     border-radius: 50%;
-    width: 40px;
-    height: 40px;
-    animation: spin 1s linear infinite;
-    margin: 0 auto 10px;
+    width: 50px;
+    height: 50px;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto 15px;
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
-/* Onay Modal Styling */
+/* Success Modal Styling */
 .success-modal {
     display: none;
     position: fixed;
@@ -443,55 +828,123 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
+    background: rgba(0, 0, 0, 0.7);
     z-index: 1000;
 }
 
 .success-modal .modal-content {
-    background-color: white;
+    background: #1a1a1a;
     margin: 10% auto;
-    padding: 20px;
-    width: 400px;
+    padding: 40px;
+    width: 500px;
     text-align: center;
-    border-radius: 10px;
+    border-radius: 15px;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+    border: 1px solid #ffd000;
+    color: #ffd000;
 }
 
 .success-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
 }
 
 .success-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
+    gap: 15px;
+    margin-bottom: 15px;
 }
 
 .success-logo {
-    width: 50px;
-    height: 50px;
+    width: 70px;
+    height: 70px;
 }
 
 .success-icon {
-    font-size: 40px;
-    color: #28a745;
-    margin: 10px 0;
+    font-size: 50px;
+    color: #ffd000;
+    margin: 15px 0;
 }
 
 .close-success-btn {
-    background-color: #333;
-    color: white;
-    padding: 10px 20px;
+    background: #ffd000;
+    color: #000000;
+    padding: 16px 30px;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
-    margin-top: 20px;
-    transition: background-color 0.3s;
+    margin-top: 30px;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
 .close-success-btn:hover {
-    background-color: #555;
+    background: #ffeb3b;
+    transform: scale(1.02);
+}
+
+/* Order Status Panel Styling */
+.order-status-panel {
+    display: none;
+    position: fixed;
+    top: 100px;
+    right: 40px;
+    width: 350px;
+    background: #1a1a1a;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+    z-index: 1000;
+    border: 1px solid #ffd000;
+    color: #ffd000;
+}
+
+.order-status-panel h3 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #ffd000;
+    margin-bottom: 15px;
+}
+
+.progress-bar-container {
+    width: 100%;
+    background: #2c2c2c;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.progress-bar {
+    height: 14px;
+    background: #ffd000;
+    width: 0%;
+    transition: width 0.5s ease-in-out;
+}
+
+.order-status-panel p {
+    font-size: 16px;
+    color: #ffd000;
+    margin-bottom: 15px;
+}
+
+.complete-btn {
+    width: 100%;
+    padding: 16px;
+    background: #ffd000;
+    color: #000000;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 18px;
+    font-weight: 600;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.complete-btn:hover {
+    background: #ffeb3b;
+    transform: scale(1.02);
 }
